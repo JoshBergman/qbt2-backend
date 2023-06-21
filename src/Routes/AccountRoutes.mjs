@@ -1,6 +1,7 @@
 import { Router } from "express";
 
-import newAccount from "../Controllers/Account/NewAccount/NewAccount.mjs";
+import newAccount from "../Controllers/Account/NewRem/NewAccount.mjs";
+import remAccount from "../Controllers/Account/NewRem/RemAccount.mjs";
 
 const router = Router();
 
@@ -9,5 +10,7 @@ router.get("/test", (req, res, next) => {
 });
 
 router.post("/new", newAccount);
+
+router.delete("/delete", remAccount);
 
 export default router;
