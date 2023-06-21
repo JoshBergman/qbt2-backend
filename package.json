@@ -1,0 +1,26 @@
+{
+  "name": "qbt-api",
+  "version": "1.0.0",
+  "description": "qbt2 backend",
+  "main": "src/Server.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Joshua Bergman",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "mongodb": "^5.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3"
+  }
+}
