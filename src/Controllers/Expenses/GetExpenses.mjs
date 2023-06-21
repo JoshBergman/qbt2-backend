@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import privInfo from "../../Private/private-info.mjs";
 
-const { uri, dbName, collectionName, dbAuth } = privInfo;
+const { uri, dbName, collectionName } = privInfo;
 
 const client = new MongoClient(uri);
 const accountsCollection = client.db(dbName).collection(collectionName);

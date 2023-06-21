@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import privInfo from "../../Private/private-info.mjs";
 
-const { uri, dbName, collectionName, dbAuth } = privInfo;
+const { uri, dbName, collectionName } = privInfo;
 
 const client = new MongoClient(uri);
 const accountsCollection = client.db(dbName).collection(collectionName);
@@ -60,12 +60,13 @@ const setExpenses = async (req, res, next) => {
       { $set: { expenses: expenses } }
     );
 
-    if (response.acknowledged && response.modifiedCount >= 1) {
+    if (response.acknowledged) {
       client.close();
       res.json({ error: false });
       return;
     }
 
+    client.close();
     throw new Error();
   } catch (err) {
     client.close();

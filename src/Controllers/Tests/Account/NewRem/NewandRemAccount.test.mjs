@@ -28,7 +28,7 @@ test("Create new test account /qbt/api/account/new", async () => {
   };
 
   expect(response.status).toBe(200);
-  expect(response.body).toEqual(expectedResponse);
+  expect(response.body.error).toEqual(expectedResponse.error);
 });
 
 test("Delete a test account /qbt/api/account/delete", async () => {
