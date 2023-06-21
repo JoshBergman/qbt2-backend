@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import privInfo from "../../../Private/private-info.mjs";
+import getNewId from "../../../Private/sess-id.mjs";
 
 const { uri, dbName, collectionName, dbAuth } = privInfo;
 
@@ -23,7 +24,7 @@ const newAccount = async (req, res, next) => {
     }
 
     //validate email & password
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && !(password.length >= 3)) {
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) || !(password.length >= 3)) {
       client.close();
       res.json({ error: true, msg: "Invalid email or password." });
       return;
@@ -50,18 +51,16 @@ const newAccount = async (req, res, next) => {
 
     // add new user after all checks
     const safePassword = dbAuth.encrypt(password);
+    const newSessId = getNewId();
     const newUser = {
       email: email,
       password: safePassword,
+      sessionID: newSessId,
       expenses: expenses,
-      sessionID: {
-        curr: "testID12312",
-        expiresOn: "69oclock",
-      },
     };
     await accountsCollection.insertOne(newUser);
     client.close();
-    res.json({ error: false });
+    res.json({ error: false, sessionID: newSessId });
     return;
   } catch (err) {
     client.close();

@@ -22,7 +22,7 @@ const remAccount = async (req, res, next) => {
     }
 
     //validate email & password
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && !(password.length >= 3)) {
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) || !(password.length >= 3)) {
       throw new Error();
     }
 

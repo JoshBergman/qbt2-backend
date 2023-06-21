@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 const { json } = bodyParser;
 
 import accountRoutes from "./Routes/AccountRoutes.mjs";
-// import expenseRoutes from "../Routes/ExpenseRoutes";
+import expenseRoutes from "./Routes/ExpenseRoutes.mjs";
 
 const app = express();
 
@@ -14,6 +14,6 @@ app.use(cors());
 app.use(json());
 
 app.use("/qbt/api/account", accountRoutes);
-// app.use("", expenseRoutes);
+app.use("/qbt/api/expenses", expenseRoutes);
 
 export default app;
