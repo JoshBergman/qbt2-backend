@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import privInfo from "../../../Private/private-info.mjs";
 
-const { uri, dbName, collectionName } = privInfo;
+const { uri, dbName, collectionName, dbAuth } = privInfo;
 
 const client = new MongoClient(uri);
 const accountsCollection = client.db(dbName).collection(collectionName);
@@ -49,9 +49,10 @@ const newAccount = async (req, res, next) => {
     }
 
     // add new user after all checks
+    const safePassword = dbAuth.encrypt(password);
     const newUser = {
       email: email,
-      password: password,
+      password: safePassword,
       expenses: expenses,
       sessionID: {
         curr: "testID12312",

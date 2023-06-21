@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import privInfo from "../../../Private/private-info.mjs";
 
-const { uri, dbName, collectionName } = privInfo;
+const { uri, dbName, collectionName, dbAuth } = privInfo;
 
 const client = new MongoClient(uri);
 const accountsCollection = client.db(dbName).collection(collectionName);
@@ -35,7 +35,8 @@ const remAccount = async (req, res, next) => {
     }
 
     //compare passwords to see if they are a match, if so delete the account.
-    if (password === gatherAccountInfo.password) {
+    const storedPassword = dbAuth.decrypt(gatherAccountInfo.password);
+    if (password === storedPassword) {
       const delResponse = await accountsCollection.deleteOne({ email: email });
 
       if (delResponse.acknowledged && delResponse.deletedCount >= 1) {
