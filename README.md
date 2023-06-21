@@ -8,7 +8,7 @@
 
 ## ❔ About
 
-A backend for the app QBT2 (Quick Budget Tool v2) that manages users, their expense data, passwords, session ID, and more. To ensure safety and security of user data, SHA-256 ecnryption is applied to all sensitive data not actively being compared against. Feel free to browse!
+A backend for the app QBT2 (Quick Budget Tool v2) that manages users, their expense data, passwords, session ID, and more. To ensure safety and security of user data, SHA-256 ecncryption is applied to all sensitive data not actively being compared against. Feel free to browse!
 
 ---
 
