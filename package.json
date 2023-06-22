@@ -5,7 +5,8 @@
   "main": "src/Server.mjs",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node src/Server.mjs"
   },
   "author": "Joshua Bergman",
   "license": "ISC",
